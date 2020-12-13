@@ -53,13 +53,13 @@ const employeeProfileQuestions = function () {
             choices: ['Engineer', 'Intern', 'Manager']
 
         }
-    ]).then(responses => {
+    ]).then(mainResponses => {
         // HINT: each employee type (manager, engineer, or intern) has slightly different
         // information; write your code to ask different questions via inquirer depending on
         // employee type.
         // Profile Specifics
 
-        switch(responses.profile) {
+        switch (mainResponses.profile) {
             case 'Engineer':
                 return inquirer.prompt([
                     {
@@ -68,32 +68,49 @@ const employeeProfileQuestions = function () {
                         name: 'github',
                         message: 'Enter Github Username',
 
-                    }
-                ])
-              break;
+                    },
+                ]).then(responses => {
+
+                    // Testing purposes
+                    console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.github);
+
+                })
+
+                break;
+
             case 'Intern':
-              return inquirer.prompt([
-                  {
+                return inquirer.prompt([
+                    {
 
-                      type: 'input',
-                      name: 'school',
-                      message: "For 'Intern's' Enter School Name" 
+                        type: 'input',
+                        name: 'school',
+                        message: "For 'Intern's' Enter School Name"
 
-                  }
-              ])
-              break;
-              case 'Manager':
-                  return inquirer.prompt([
-                      {
+                    }
+                ]).then(responses => {
 
-                          type: 'input',
-                          name: 'officeNumber',
-                          message: 'Enter Office Phone Number'
+                    // Testing purposes
+                    console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.school);
 
-                      }
-                  ])
-              break;
-          }
+                })
+                break;
+            case 'Manager':
+                return inquirer.prompt([
+                    {
+
+                        type: 'input',
+                        name: 'officeNumber',
+                        message: 'Enter Office Phone Number'
+
+                    }
+                ]).then(responses => {
+
+                    // Testing purposes
+                    console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.officeNumber);
+
+                })
+                break;
+        }
     })
 }
 
