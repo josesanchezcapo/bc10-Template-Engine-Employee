@@ -14,6 +14,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const { type } = require("os");
 const { choices } = require("yargs");
+const { Console } = require("console");
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -126,29 +127,43 @@ const employeeProfileQuestions = function () {
                 message: 'Enter another Profile?',
                 choices: ['Yes', 'No']
             }
-        ]).then(response => {
+        ]).then(responses => {
 
-            if (response.anotherProfile === 'Yes') { employeeProfileQuestions();} else { }
-            
-        })
+            if (responses.anotherProfile === 'Yes') {
+                employeeProfileQuestions();
+            }
+             else
+            {
+                const createHtml = render(employeeProfile);
+                // For testing purposes
+                console.log(employeeProfile);
+                fs.writeFile(outputPath, createHtml, (err) => {
+                    if (err) console.log(err)
+                    console.log('HTML Created. Path: "' + outputPath + '".')
+                })
+            }
+
+        });
+
+
+        // After the user has input all employees desired, call the `render` function (required
+        // above) and pass in an array containing all employee objects; the `render` function will
+        // generate and return a block of HTML including templated divs for each employee!
+
+        // After you have your html, you're now ready to create an HTML file using the HTML
+        // returned from the `render` function. Now write it to a file named `team.html` in the
+        // `output` folder. You can use the variable `outputPath` above target this location.
+        // Hint: you may need to check if the `output` folder exists and create it if it
+        // does not.
+
+       
+
     })
+
+    // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
+    // and Intern classes should all extend from a class named Employee; see the directions
+    // for further information. Be sure to test out each class and verify it generates an
+    // object with the correct structure and methods. This structure will be crucial in order
+    // for the provided `render` function to work! ```
 }
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
 employeeProfileQuestions();
-
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
