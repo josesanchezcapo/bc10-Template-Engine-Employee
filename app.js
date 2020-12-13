@@ -59,7 +59,7 @@ const employeeProfileQuestions = function () {
         // employee type.
         // Profile Specifics
 
-        switch(expression) {
+        switch(responses) {
             case responses.profile['Engineer']:
                 return inquirer.prompt([
                     {
