@@ -72,7 +72,9 @@ const employeeProfileQuestions = function () {
                 ]).then(responses => {
 
                     // Testing purposes
-                    console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.github);
+                    //console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.github);
+                    let engineer = new Engineer(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.github);
+                    employeeProfile.push(engineer);
 
                 })
 
@@ -90,7 +92,9 @@ const employeeProfileQuestions = function () {
                 ]).then(responses => {
 
                     // Testing purposes
-                    console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.school);
+                    //console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.school);
+                    let intern = new Intern(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.school);
+                    employeeProfile.push(intern);
 
                 })
                 break;
@@ -106,11 +110,27 @@ const employeeProfileQuestions = function () {
                 ]).then(responses => {
 
                     // Testing purposes
-                    console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.officeNumber);
+                    //console.log(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.officeNumber);
+                    let manager = new Manager(mainResponses.name, mainResponses.id, mainResponses.email, mainResponses.profile, responses.officeNumber);
+                    employeeProfile.push(manager);
 
                 })
                 break;
+            // Giving the user the option to enter another profile.
         }
+    }).then(responses => {
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'anotherProfile',
+                message: 'Enter another Profile?',
+                choices: ['Yes', 'No']
+            }
+        ]).then(response => {
+
+            if (response.anotherProfile === 'Yes') { employeeProfileQuestions();} else { }
+            
+        })
     })
 }
 
