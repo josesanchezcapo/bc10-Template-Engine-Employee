@@ -59,8 +59,8 @@ const employeeProfileQuestions = function () {
         // employee type.
         // Profile Specifics
 
-        switch(responses) {
-            case responses.profile['Engineer']:
+        switch(responses.profile) {
+            case 'Engineer':
                 return inquirer.prompt([
                     {
 
@@ -71,7 +71,7 @@ const employeeProfileQuestions = function () {
                     }
                 ])
               break;
-            case responses.profile['Intern']:
+            case 'Intern':
               return inquirer.prompt([
                   {
 
@@ -82,7 +82,7 @@ const employeeProfileQuestions = function () {
                   }
               ])
               break;
-              case responses.profile['Manager']:
+              case 'Manager':
                   return inquirer.prompt([
                       {
 
