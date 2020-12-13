@@ -132,11 +132,10 @@ const employeeProfileQuestions = function () {
             if (responses.anotherProfile === 'Yes') {
                 employeeProfileQuestions();
             }
-             else
-            {
+            else {
                 const createHtml = render(employeeProfile);
                 // For testing purposes
-                console.log(employeeProfile);
+                // console.log(employeeProfile);
                 fs.writeFile(outputPath, createHtml, (err) => {
                     if (err) console.log(err)
                     console.log('HTML Created. Path: "' + outputPath + '".')
@@ -156,7 +155,7 @@ const employeeProfileQuestions = function () {
         // Hint: you may need to check if the `output` folder exists and create it if it
         // does not.
 
-       
+
 
     })
 
