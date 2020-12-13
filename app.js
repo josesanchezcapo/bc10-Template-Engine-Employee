@@ -59,7 +59,41 @@ const employeeProfileQuestions = function () {
         // employee type.
         // Profile Specifics
 
+        switch(expression) {
+            case responses.profile['Engineer']:
+                return inquirer.prompt([
+                    {
 
+                        type: 'input',
+                        name: 'github',
+                        message: 'Enter Github Username',
+
+                    }
+                ])
+              break;
+            case responses.profile['Intern']:
+              return inquirer.prompt([
+                  {
+
+                      type: 'input',
+                      name: 'school',
+                      message: "For 'Intern's' Enter School Name" 
+
+                  }
+              ])
+              break;
+              case responses.profile['Manager']:
+                  return inquirer.prompt([
+                      {
+
+                          type: 'input',
+                          name: 'officeNumber',
+                          message: 'Enter Office Phone Number'
+
+                      }
+                  ])
+              break;
+          }
     })
 }
 
